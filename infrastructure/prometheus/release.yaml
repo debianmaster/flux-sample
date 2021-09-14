@@ -12,7 +12,7 @@ spec:
         name: stable
         namespace: prometheus
       version: "latest"
-  interval: 1h0m0s
+  interval: 10s
   install:
     remediation:
       retries: 3
