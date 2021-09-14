@@ -1,0 +1,37 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus
+spec:
+  releaseName: prometheus
+  chart:
+    spec:
+      chart: prometheus
+      sourceRef:
+        kind: HelmRepository
+        name: stable
+        namespace: prometheus
+      version: "latest"
+  interval: 1h0m0s
+  install:
+    remediation:
+      retries: 3
+  values:
+    grafana:
+      ingress:
+        enabled: true
+        hosts:
+        - grafana.local
+    alertmanager:
+      ingress:
+        enabled: true
+        hosts:
+        - cluster.alertmanager.local
+    prometheus:
+      ingress:
+        enabled: true
+        hosts:
+        - cluster.prometheus.local
+    prometheusSpec:
+      remoteWrite:
+      - url: "http://thanos-receive.thanos.svc.cluster.local:19291/api/v1/receive"
