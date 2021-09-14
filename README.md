@@ -1,7 +1,7 @@
 ```
 export GITHUB_TOKEN='token'
-export GITHUB_USER=debianmaster
-export GITHUB_REPO=flux-sample
+export GITHUB_USER='debianmaster'
+export GITHUB_REPO='flux-sample'
 ```
 
 ```
